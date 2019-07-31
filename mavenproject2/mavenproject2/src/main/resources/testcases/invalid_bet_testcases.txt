@@ -1,0 +1,35 @@
+#missing betid
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"userId":"ibt","timeStamp":1489276800010,"amount":100,"messageId":200000}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":400,"statusMessage":"betId cannot be null or empty","messageId":200000}}
+
+#empty betid ("")
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"","userId":"ibt","timeStamp":1489276800010,"amount":100,"messageId":200001}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":400,"statusMessage":"betId cannot be null or empty","messageId":200001}}
+
+#empty betid (" ")
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"   ","userId":"ibt","timeStamp":1489276800010,"amount":100,"messageId":200002}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":400,"statusMessage":"betId cannot be null or empty","messageId":200002}}
+
+#missing userid
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"ibt-0","timeStamp":1489276800010,"amount":100,"messageId":200003}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":400,"statusMessage":"userId cannot be null or empty","messageId":200003}}
+
+#empty userid ("")
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"ibt-0","userId":"","timeStamp":1489276800010,"amount":100,"messageId":200004}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":400,"statusMessage":"userId cannot be null or empty","messageId":200004}}
+
+#empty userid (" ")
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"ibt-0","userId":"   ","timeStamp":1489276800010,"amount":100,"messageId":200005}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":400,"statusMessage":"userId cannot be null or empty","messageId":200005}}
+
+#negative amount
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"ibt-0","userId":"ibt","timeStamp":1489276800010,"amount":-1,"messageId":200006}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":400,"statusMessage":"amount cannot be negative","messageId":200006}}
+
+#timestamp earlier than allowed
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"ibt-0","userId":"ibt","timeStamp":1483228800000,"amount":100,"messageId":200007}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":400,"statusMessage":"timestamp cannot be before 1.03.2017 00:00:00.000","messageId":200007}}
+
+#timestamp in the future
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"ibt-0","userId":"ibt","timeStamp":1893456000000,"amount":100,"messageId":200008}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":400,"statusMessage":"timestamp cannot be in the future","messageId":200008}}

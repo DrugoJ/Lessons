@@ -1,0 +1,67 @@
+2019-04-02 20:23:24 INFO  TestFramework:37 - Collecting test cases[main]
+2019-04-02 20:23:24 INFO  TestFramework:46 - Starting server[main]
+2019-04-02 20:23:24 INFO  TestFramework:50 - Creating MockClient threads[main]
+2019-04-02 20:23:24 INFO  TestFramework:55 - Raising the gate on MockClient threads - they will all start almost simultaneously![main]
+2019-04-02 20:23:24 INFO  TestFramework:62 - Waiting until all MockClient threads have completed[main]
+2019-04-02 20:23:25 ERROR MockClient:99 - MockClient [multiple_bet_valid_testcases.txt]: Unable to use socket[Thread-2]
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at com.playtech.intern.mockclient.MockClient.run(MockClient.java:81)
+	at java.lang.Thread.run(Thread.java:748)
+2019-04-02 20:23:25 ERROR MockClient:99 - MockClient [bet_limit_validation_testcases.txt]: Unable to use socket[Thread-0]
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at com.playtech.intern.mockclient.MockClient.run(MockClient.java:81)
+	at java.lang.Thread.run(Thread.java:748)
+2019-04-02 20:23:25 ERROR MockClient:99 - MockClient [single_bet_valid_testcases.txt]: Unable to use socket[Thread-3]
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at com.playtech.intern.mockclient.MockClient.run(MockClient.java:81)
+	at java.lang.Thread.run(Thread.java:748)
+2019-04-02 20:23:25 ERROR MockClient:99 - MockClient [invalid_bet_testcases.txt]: Unable to use socket[Thread-1]
+java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at java.net.Socket.connect(Socket.java:538)
+	at java.net.Socket.<init>(Socket.java:434)
+	at java.net.Socket.<init>(Socket.java:211)
+	at com.playtech.intern.mockclient.MockClient.run(MockClient.java:81)
+	at java.lang.Thread.run(Thread.java:748)
+2019-04-02 20:23:25 INFO  TestFramework:69 - All MockClient threads completed, closing down.[main]
+2019-04-02 20:23:25 FATAL TestFramework:85 - Test FAILURE! Only 0/4 test threads completed successfully.[main]

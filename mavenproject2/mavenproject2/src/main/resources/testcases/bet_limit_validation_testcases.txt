@@ -1,0 +1,67 @@
+#1490140800000 - 22.03.2017 00:00:00.000 GMT
+#1490184000000 - 22.03.2017 12:00:00.000 GMT
+#1490227199999 - 22.03.2017 23:59:59.999 GMT
+
+#add bet 0 - timestamp 12:00, 3000 units, expect ok (TOTAL 24H BETS: 3000)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-0","userId":"blvt","timeStamp":1490140800000,"amount":3000,"messageId":100001}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100001}}
+
+#add bet 1 - timestamp 00:00, 4000 units, expect ok (TOTAL 24H BETS: 7000)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-1","userId":"blvt","timeStamp":1490184000000,"amount":4000,"messageId":100002}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100002}}
+
+#add bet 2 - timestamp 23:59, 2999 units, expect ok (TOTAL 24H BETS: 9999)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-2","userId":"blvt","timeStamp":1490227199999,"amount":2999,"messageId":100003}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100003}}
+
+#add bet 3 - timestamp 12:00, 1 unit, expect ok (TOTAL 24H BETS: 10000)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-3","userId":"blvt","timeStamp":1490140800000,"amount":1,"messageId":100004}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100004}}
+
+#add bet 4 - timestamp 12:00, 1 unit, expect error (TOTAL 24H BETS would be 10001, over limit)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-4","userId":"blvt","timeStamp":1490140800000,"amount":1,"messageId":100005}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":410,"statusMessage":"RG limit violation: 10001","messageId":100005}}
+
+#add bet 5 - timestamp 00:00:00.000, 1 unit, expect error (TOTAL 24H BETS would be 10001, over limit)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-5","userId":"blvt","timeStamp":1490184000000,"amount":1,"messageId":100006}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":410,"statusMessage":"RG limit violation: 10001","messageId":100006}}
+
+#add bet 6 - timestamp 23:59:59.999, 1 unit, expect error (TOTAL 24H BETS would be 10001, over limit)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-6","userId":"blvt","timeStamp":1490227199999,"amount":1,"messageId":100007}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":410,"statusMessage":"RG limit violation: 10001","messageId":100007}}
+
+#add bet 7 - timestamp 23:59:59.999 of PREVIOUS day, 1 unit, expect ok (TOTAL 24H BETS 1)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-7","userId":"blvt","timeStamp":1490140799999,"amount":1,"messageId":100008}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100008}}
+
+#add bet 8 - timestamp 00:00:00.000 of NEXT day, 1 unit, expect ok (TOTAL 24H BETS 1)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-8","userId":"blvt","timeStamp":1490227200000,"amount":1,"messageId":100009}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100009}}
+
+#cancel bet 3 - 1 unit (TOTAL 24H BETS 9999)
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetRequest","data":{"betId":"blvt-3","messageId":100010}}
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetResponse","data":{"statusCode":200,"messageId":100010}}
+
+#add bet 9 - timestamp 12:00, 1 unit, expect ok (TOTAL 24H BETS 10000)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-9","userId":"blvt","timeStamp":1490184000000,"amount":1,"messageId":100011}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100011}}
+
+#cancel bet 9 (TOTAL 24H BETS 9999)
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetRequest","data":{"betId":"blvt-9","messageId":100012}}
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetResponse","data":{"statusCode":200,"messageId":100012}}
+
+#add bet 10 - timestamp 00:00:00.000, 1 unit, expect ok (TOTAL 24H BETS 10000)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-10","userId":"blvt","timeStamp":1490140800000,"amount":1,"messageId":100013}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100013}}
+
+#cancel bet 10 (TOTAL 24H BETS 9999)
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetRequest","data":{"betId":"blvt-10","messageId":100014}}
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetResponse","data":{"statusCode":200,"messageId":100014}}
+
+#add bet 11 - timestamp 23:59:59.999, 1 unit, expect ok (TOTAL 24H BETS 10000)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-11","userId":"blvt","timeStamp":1490227199999,"amount":1,"messageId":100015}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100015}}
+
+#add bet 12 - timestamp 23:59:59.999, 0 units, expect ok (TOTAL 24H BETS 10000)
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"blvt-12","userId":"blvt","timeStamp":1490227199999,"amount":0,"messageId":100016}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":100016}}

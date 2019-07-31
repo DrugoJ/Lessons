@@ -1,0 +1,27 @@
+#add bet, expect ok
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"sbvt-0","userId":"sbvt","timeStamp":1489276800010,"amount":100,"messageId":400000}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":400000}}
+
+#cancel bet, expect ok
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetRequest","data":{"betId":"sbvt-0","messageId":400001}}
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetResponse","data":{"statusCode":200,"messageId":400001}}
+
+#send cancel bet for previously cancelled bet, expect err
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetRequest","data":{"betId":"sbvt-0","messageId":400002}}
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetResponse","data":{"statusCode":406,"statusMessage":"Bet already cancelled: sbvt-0","messageId":400002}}
+
+#send cancel bet with unknown id, expect err as no matching bets found
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetRequest","data":{"betId":"sbvt-1","messageId":400003}}
+{"type":"com.playtech.intern.protocol.messages.cancel.CancelBetResponse","data":{"statusCode":404,"statusMessage":"Bet not found: sbvt-1","messageId":400003}}
+
+#query bets, no matches found
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"sbvt","status":"ACTIVE"},"messageId":400004}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[],"statusCode":200,"messageId":400004}}
+
+#query bets by userid+status, 1 match found
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"sbvt","status":"CANCELLED"},"messageId":400005}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[{"betId":"sbvt-0","userId":"sbvt","timeStamp":1489276800010,"amount":100,"status":"CANCELLED"}],"statusCode":200,"messageId":400005}}
+
+#query bets by userid, 1 match found
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"sbvt"},"messageId":400006}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[{"betId":"sbvt-0","userId":"sbvt","timeStamp":1489276800010,"amount":100,"status":"CANCELLED"}],"statusCode":200,"messageId":400006}}

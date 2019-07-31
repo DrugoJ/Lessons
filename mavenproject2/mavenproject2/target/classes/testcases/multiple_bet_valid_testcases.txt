@@ -1,0 +1,39 @@
+#add bet
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"mbvt-0","userId":"mbvt","timeStamp":1489276800010,"amount":200,"messageId":300000}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":300000}}
+
+#add another bet
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"mbvt-1","userId":"mbvt","timeStamp":1489276800011,"amount":300,"messageId":300001}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":300001}}
+
+#query bets, 2 matches found
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"mbvt"},"messageId":300002}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[{"betId":"mbvt-0","userId":"mbvt","timeStamp":1489276800010,"amount":200,"status":"ACTIVE"},{"betId":"mbvt-1","userId":"mbvt","timeStamp":1489276800011,"amount":300,"status":"ACTIVE"}],"statusCode":200,"messageId":300002}}
+
+#query bets by userid + inTimeStamp filter, check only one returned
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"mbvt", "minTimeStamp": 1489276800011},"messageId":300003}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[{"betId":"mbvt-1","userId":"mbvt","timeStamp":1489276800011,"amount":300,"status":"ACTIVE"}],"statusCode":200,"messageId":300003}}
+
+#query bets by userid + minTimeStamp filter, check both returned
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"mbvt", "minTimeStamp": 1489276800010},"messageId":300004}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[{"betId":"mbvt-0","userId":"mbvt","timeStamp":1489276800010,"amount":200,"status":"ACTIVE"},{"betId":"mbvt-1","userId":"mbvt","timeStamp":1489276800011,"amount":300,"status":"ACTIVE"}],"statusCode":200,"messageId":300004}}
+
+#query bets by userid + minTimeStamp filter, check neither returned
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"mbvt", "minTimeStamp": 1489276800012},"messageId":300005}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[],"statusCode":200,"messageId":300005}}
+
+#query bets by userid + maxTimeStamp filter, check only one returned
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"mbvt", "maxTimeStamp": 1489276800010},"messageId":300006}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[{"betId":"mbvt-0","userId":"mbvt","timeStamp":1489276800010,"amount":200,"status":"ACTIVE"}],"statusCode":200,"messageId":300006}}
+
+#query bets by userid + maxTimeStamp filter, check both returned
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"mbvt", "maxTimeStamp": 1489276800011},"messageId":300007}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[{"betId":"mbvt-0","userId":"mbvt","timeStamp":1489276800010,"amount":200,"status":"ACTIVE"},{"betId":"mbvt-1","userId":"mbvt","timeStamp":1489276800011,"amount":300,"status":"ACTIVE"}],"statusCode":200,"messageId":300007}}
+
+#query bets by userid + maxTimeStamp filter, check neither returned
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsRequest","data":{"filter":{"userId":"mbvt", "maxTimeStamp": 1489276800009},"messageId":300008}}
+{"type":"com.playtech.intern.protocol.messages.query.QueryBetsResponse","data":{"bets":[],"statusCode":200,"messageId":300008}}
+
+#place a new bet with timestamp 1488326400000 - the earliest allowed
+{"type":"com.playtech.intern.protocol.messages.add.AddBetRequest","data":{"betId":"mbvt-2","userId":"mbvt","timeStamp":1488326400000,"amount":300,"messageId":300009}}
+{"type":"com.playtech.intern.protocol.messages.add.AddBetResponse","data":{"statusCode":200,"messageId":300009}}
